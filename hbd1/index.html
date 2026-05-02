@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Birthday Tia 🎉</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    font-family:'Poppins',sans-serif;
+    color:#fff;
+    background:
+        linear-gradient(-45deg,
+            #090016,
+            #2b003f,
+            #52002d,
+            #0f172a,
+            #1e0038);
+    background-size:400% 400%;
+    animation:bgMove 16s ease infinite;
+}
+
+/* animated background */
+@keyframes bgMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+body::before{
+    content:'';
+    position:fixed;
+    inset:-20%;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(255,105,180,.25), transparent 20%),
+        radial-gradient(circle at 80% 20%, rgba(168,85,247,.22), transparent 22%),
+        radial-gradient(circle at 50% 80%, rgba(34,211,238,.18), transparent 22%),
+        radial-gradient(circle at 70% 60%, rgba(255,255,255,.08), transparent 15%);
+    filter:blur(90px);
+    animation:aurora 18s ease-in-out infinite alternate;
+    z-index:0;
+}
+
+@keyframes aurora{
+    0%{
+        transform:translate(-5%,-5%) rotate(0deg);
+    }
+    100%{
+        transform:translate(5%,5%) rotate(12deg);
+    }
+}
+
+/* overlay cinematic */
+#overlay{
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle, transparent 20%, rgba(0,0,0,.35) 65%, rgba(0,0,0,.85) 100%);
+    z-index:2;
+}
+
+/* floating cats */
+.cat{
+    position:fixed;
+    bottom:-50px;
+    font-size:28px;
+    animation:floatUp linear forwards;
+    opacity:.8;
+    z-index:3;
+    filter:drop-shadow(0 0 6px rgba(255,255,255,.4));
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+    }
+    15%{opacity:1;}
+    to{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* particles */
+.particle{
+    position:fixed;
+    bottom:-30px;
+    font-size:20px;
+    opacity:.8;
+    animation:particleUp linear forwards;
+    z-index:3;
+}
+
+@keyframes particleUp{
+    from{
+        transform:translateY(0) scale(.5);
+        opacity:0;
+    }
+    15%{opacity:1;}
+    to{
+        transform:translateY(-110vh) scale(1.5) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* slides */
+.container{
+    position:fixed;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:5;
+}
+
+.slide{
+    position:absolute;
+    width:min(90vw,720px);
+    height:min(72vh,540px);
+    object-fit:contain;
+    border-radius:35px;
+    border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.08);
+    padding:18px;
+    backdrop-filter:blur(18px);
+    box-shadow:
+        0 10px 40px rgba(0,0,0,.35),
+        inset 0 1px 1px rgba(255,255,255,.15);
+    opacity:0;
+    transform:scale(.8);
+    transition:1.2s;
+}
+
+.slide.active{
+    opacity:1;
+    transform:scale(1);
+    animation:zoomFloat 6s ease-in-out infinite;
+    box-shadow:
+        0 0 30px rgba(255,255,255,.2),
+        0 0 60px rgba(255,105,180,.25),
+        0 25px 80px rgba(0,0,0,.6);
+}
+
+@keyframes zoomFloat{
+    0%,100%{transform:scale(1) translateY(0);}
+    50%{transform:scale(1.03) translateY(-8px);}
+}
+
+/* text */
+#text{
+    position:fixed;
+    left:50%;
+    bottom:20px;
+    transform:translateX(-50%);
+    width:min(92%,850px);
+    padding:18px 28px;
+    border-radius:25px;
+    text-align:center;
+    font-size:clamp(15px,1.3vw,22px);
+    font-weight:600;
+    line-height:1.8;
+    background:rgba(0,0,0,.35);
+    backdrop-filter:blur(15px);
+    border:1px solid rgba(255,255,255,.15);
+    opacity:0;
+    transition:1s;
+    z-index:20;
+    animation:textGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow{
+    from{
+        box-shadow:0 0 10px rgba(255,255,255,.08);
+    }
+    to{
+        box-shadow:
+            0 0 25px rgba(255,105,180,.4),
+            0 0 40px rgba(255,255,255,.15);
+    }
+}
+
+/* start screen */
+#start{
+    position:fixed;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:25px;
+    text-align:center;
+    z-index:100;
+    background:radial-gradient(circle,#350024 0%,#120012 50%,#000 100%);
+}
+
+#start h1{
+    font-size:clamp(55px,8vw,110px);
+    font-weight:800;
+    background:linear-gradient(45deg,#fff,#ffd6f5,#ff69b4,#fff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    animation:bounce 2s infinite;
+}
+
+@keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+}
+
+button{
+    padding:18px 65px;
+    border:none;
+    border-radius:100px;
+    cursor:pointer;
+    font-size:24px;
+    font-weight:700;
+    color:white;
+    background:linear-gradient(135deg,#ff4da6,#ff1493,#ff69b4);
+    box-shadow:0 15px 40px rgba(255,20,147,.55);
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+</style>
+</head>
+<body>
+
+<div id="overlay"></div>
+<div id="cats"></div>
+<div id="particles"></div>
+
+<div id="start">
+    <h1>Happy Birthday 🎂</h1>
+    <button onclick="start()">Buka Kejutan</button>
+</div>
+
+<div class="container">
+    <img id="img1" class="slide">
+    <img id="img2" class="slide">
+</div>
+
+<div id="text"></div>
+
+<audio id="music" loop>
+    <source src="romantis.mp3">
+</audio>
+
+<script>
+const nama = "Tia";
+
+const slides = [
+    {img:"1.jpeg", text:`Hai ${nama}, ini adalah hari yang spesial buat tia ya?`},
+    {img:"2.jpeg", text:`Selamat ulang tahun ${nama}! Semoga selalu bahagia.`},
+    {img:"3.jpeg", text:"Semoga semua impianmu tercapai."},
+    {img:"4.jpeg", text:"selalu jaga kesehatan."},
+    {img:"5.jpeg", text:"Jangan lupa tersenyum setiap hari"},
+    {img:"6.jpeg", text:"tia itu spesial banget tau :v."},
+    {img:null, text:`${nama}, terima kasih sudah hadir di dunia ini.
+
+Semoga hidupnya selalu dipenuhi kebahagiaan,
+kesehatan, dan rezeki yang lancar.
+
+Tetap jadi diri tia sendiri,
+dan jangan pernah berhenti bersinar.
+
+Selamat ulang tahun ${nama} 🎂💖`}
+];
+
+let i = 0;
+let active = 0;
+
+const music = document.getElementById("music");
+
+/* suara */
+function speak(text){
+    return new Promise(resolve => {
+        speechSynthesis.cancel();
+
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = "id-ID";
+        u.rate = 0.95;
+        u.pitch = 1.6;
+        u.volume = 1;
+
+        const voices = speechSynthesis.getVoices();
+        const femaleVoice = voices.find(v =>
+            v.lang.includes("id") &&
+            (v.name.toLowerCase().includes("female") ||
+             v.name.toLowerCase().includes("google"))
+        );
+
+        if(femaleVoice) u.voice = femaleVoice;
+
+        u.onend = resolve;
+        speechSynthesis.speak(u);
+    });
+}
+
+speechSynthesis.onvoiceschanged = () => {
+    speechSynthesis.getVoices();
+};
+
+/* cats */
+function createCat(){
+    const cat = document.createElement("div");
+    cat.className = "cat";
+    cat.innerHTML = "🐱";
+    cat.style.left = Math.random()*100 + "vw";
+    cat.style.animationDuration = (6 + Math.random()*6) + "s";
+    cat.style.fontSize = (18 + Math.random()*20) + "px";
+    document.body.appendChild(cat);
+    setTimeout(()=>cat.remove(),12000);
+}
+setInterval(createCat,400);
+
+/* particles */
+function createParticle(){
+    const p = document.createElement("div");
+    p.className = "particle";
+    const icons = ["💖","✨","🌸","💕","💫"];
+    p.innerHTML = icons[Math.floor(Math.random()*icons.length)];
+    p.style.left = Math.random()*100 + "vw";
+    p.style.animationDuration = (6 + Math.random()*6) + "s";
+    p.style.fontSize = (16 + Math.random()*24) + "px";
+    document.body.appendChild(p);
+    setTimeout(()=>p.remove(),12000);
+}
+setInterval(createParticle,300);
+
+/* ending explosion */
+function catExplosion(){
+    for(let i=0;i<80;i++){
+        const cat = document.createElement("div");
+        cat.innerHTML = ["🐱","😻","🐾","💖","🎉"][Math.floor(Math.random()*5)];
+        cat.style.position = "fixed";
+        cat.style.left = "50%";
+        cat.style.top = "50%";
+        cat.style.fontSize = (20 + Math.random()*30) + "px";
+        cat.style.zIndex = 999;
+
+        const x = (Math.random()-0.5) * 1200;
+        const y = (Math.random()-0.5) * 900;
+
+        cat.animate([
+            {transform:"translate(0,0) scale(.5)", opacity:1},
+            {
+                transform:`translate(${x}px,${y}px) scale(1.8) rotate(${Math.random()*720}deg)`,
+                opacity:0
+            }
+        ],{
+            duration:2500,
+            easing:"cubic-bezier(.17,.67,.83,.67)"
+        });
+
+        document.body.appendChild(cat);
+        setTimeout(()=>cat.remove(),2500);
+    }
+}
+
+/* typing */
+async function typeText(text){
+    const el = document.getElementById("text");
+    el.innerHTML = "";
+    el.style.opacity = 1;
+
+    const words = text.split(" ");
+    let index = 0;
+
+    speak(text);
+
+    const interval = setInterval(()=>{
+        if(index < words.length){
+            el.innerHTML += words[index] + " ";
+            index++;
+        }
+    },100);
+
+    await new Promise(r=>setTimeout(r,text.length*120));
+    clearInterval(interval);
+}
+
+/* slide */
+async function showSlide(){
+    const img1 = document.getElementById("img1");
+    const img2 = document.getElementById("img2");
+
+    const next = active === 0 ? img2 : img1;
+    const cur = active === 0 ? img1 : img2;
+
+    if(slides[i].img){
+        next.src = slides[i].img;
+        next.classList.add("active");
+        cur.classList.remove("active");
+    }
+
+    active = 1 - active;
+
+    await typeText(slides[i].text);
+
+    if(i < slides.length - 1){
+        i++;
+        showSlide();
+    } else {
+        document.getElementById("text").innerHTML =
+            "💖 Happy Birthday Tia 🎉 🐱✨";
+        catExplosion();
+    }
+}
+
+/* start */
+function start(){
+    document.getElementById("start").style.display = "none";
+
+    music.volume = 0;
+    music.play();
+
+    let fade = setInterval(()=>{
+        if(music.volume < 0.7) music.volume += 0.05;
+        else clearInterval(fade);
+    },100);
+
+    showSlide();
+}
+</script>
+</body>
+</html><!DOCTYPE html>
